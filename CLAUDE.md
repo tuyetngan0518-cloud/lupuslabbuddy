@@ -11,7 +11,8 @@ A web app where a person with lupus (SLE) asks about lab indicators and monitori
 ## Scope rules (never break these)
 
 - In scope: what SLE lab tests measure and how to read a lab report in general (ANA, anti-dsDNA, complement C3/C4, CBC, creatinine, urine protein, ESR/CRP, drug-safety labs, follow-up frequency).
-- Out of scope, and the UI says so: interpreting a person's own results, diagnosis, treatment advice, other diseases. Not for doctors.
+- Out of scope, and the UI says so: interpreting a person's own results, diagnosis, treatment advice, other diseases.
+- Audience: people with lupus, carers and supporters, and learners (medical or nursing students); one plain voice for all. For learning and reference, never for care or treatment decisions.
 - Every claim in an answer must cite at least one retrieved chunk. Claims without a valid citation are dropped in code.
 - Refuse with "Not enough evidence to answer this" when fewer than 2 chunks pass the similarity threshold, or when no cited claim survives.
 - Evidence level is set in code from the article's publication type, never by the model.

@@ -6,11 +6,11 @@ export const strings = {
     navAsk: "Ask",
     navGlossary: "Glossary",
     navAbout: "About and limits",
-    limits: "General information only. Not about your results. No expert review.",
+    limits: "For learning and reference. Not about personal results. No expert review.",
     langLabel: "Language",
 
-    askTitle: "Understand a lab term, and see where the answer came from",
-    askLede: "Ask about a lab test used in lupus (SLE). Each part of the answer shows its sources and evidence level.",
+    askTitle: "Lupus lab tests in plain language, with a source for every claim",
+    askLede: "For people with lupus, the people who support them, and students learning about lupus. Ask about a lab test: each part of the answer shows its sources and evidence level. For learning and reference, not for treatment decisions.",
     askLabel: "Your question",
     askPlaceholder: "What does anti-dsDNA measure?",
     askHint: "Please do not enter your own results or personal details.",
@@ -70,12 +70,12 @@ export const strings = {
 
     scope: {
       personal_result: [
-        "This tool cannot interpret your own results",
-        "Please ask your care team, who know your history and your laboratory's ranges. You may ask what a test measures.",
+        "This tool cannot interpret personal results",
+        "Please ask the care team, who know the person's history and the laboratory's ranges. You may ask what a test measures.",
       ],
       diagnosis_or_treatment: [
         "This tool cannot diagnose or advise on treatment",
-        "These decisions rest with your care team. You may ask what a lab test measures, or what a medicine is used for and which tests are checked while taking it. For example: “Which lab tests are checked while taking hydroxychloroquine?”",
+        "These decisions rest with the care team. You may ask what a lab test measures, or what a medicine is used for and which tests are checked while taking it. For example: “Which lab tests are checked while taking hydroxychloroquine?”",
       ],
       other_disease: [
         "This tool only covers lab tests in lupus",
@@ -151,11 +151,11 @@ export const strings = {
     navAsk: "Đặt câu hỏi",
     navGlossary: "Bảng thuật ngữ",
     navAbout: "Giới thiệu và phạm vi",
-    limits: "Chỉ là thông tin chung. Không nhận xét về kết quả của riêng bạn. Chưa được chuyên gia thẩm định.",
+    limits: "Dùng để tìm hiểu và tham khảo. Không nhận xét kết quả của riêng ai. Chưa được chuyên gia thẩm định.",
     langLabel: "Ngôn ngữ",
 
-    askTitle: "Hiểu thuật ngữ xét nghiệm, và biết câu trả lời dựa trên nguồn nào",
-    askLede: "Hỏi về một xét nghiệm thường dùng trong bệnh lupus (SLE). Mỗi ý trong câu trả lời đều kèm nguồn tham khảo và mức độ bằng chứng.",
+    askTitle: "Xét nghiệm trong bệnh lupus, giải thích dễ hiểu và có nguồn cho từng ý",
+    askLede: "Dành cho người bệnh lupus, người thân và người chăm sóc, và sinh viên y khoa, điều dưỡng đang tìm hiểu về bệnh lupus. Hãy hỏi về một xét nghiệm: mỗi ý trong câu trả lời đều kèm nguồn tham khảo và mức độ bằng chứng. Chỉ để tìm hiểu và tham khảo, không dùng để quyết định điều trị.",
     askLabel: "Câu hỏi của bạn",
     askPlaceholder: "Xét nghiệm anti-dsDNA dùng để đo gì?",
     askHint: "Vui lòng không nhập kết quả xét nghiệm hoặc thông tin cá nhân.",
@@ -215,8 +215,8 @@ export const strings = {
 
     scope: {
       personal_result: [
-        "Công cụ này không giải thích được kết quả của riêng bạn",
-        "Vui lòng hỏi bác sĩ điều trị, người nắm rõ bệnh sử của bạn và khoảng tham chiếu của phòng xét nghiệm. Bạn có thể hỏi một xét nghiệm dùng để đo gì.",
+        "Công cụ này không giải thích kết quả xét nghiệm của một người cụ thể",
+        "Vui lòng hỏi bác sĩ điều trị, người nắm rõ bệnh sử của người bệnh và khoảng tham chiếu của phòng xét nghiệm. Bạn có thể hỏi một xét nghiệm dùng để đo gì.",
       ],
       diagnosis_or_treatment: [
         "Công cụ này không chẩn đoán và không tư vấn điều trị",
