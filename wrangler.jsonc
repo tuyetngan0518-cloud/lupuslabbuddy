@@ -1,6 +1,9 @@
 {
   // Settings for the Cloudflare Worker (the small server that runs the app).
-  "name": "lupus-lab-buddy",
+  "name": "lupuslabbuddy",
+
+  // Give the app its free public address: https://lupuslabbuddy.<your-subdomain>.workers.dev
+  "workers_dev": true,
   "main": "src/worker.ts",
   "compatibility_date": "2026-11-01",
 
