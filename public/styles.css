@@ -187,7 +187,7 @@ main {
 
   .ask-layout {
     display: grid;
-    grid-template-columns: minmax(0, calc(var(--measure) + var(--margin-col) + 96px)) 300px;
+    grid-template-columns: minmax(0, calc(var(--measure) + var(--margin-col) + 96px)) 340px;
     gap: 56px;
     align-items: start;
   }
@@ -486,6 +486,8 @@ textarea {
   font: 500 1rem/1.4 var(--ui);
   color: var(--graphite);
   margin: 0;
+  /* Fill the line instead of splitting into two short, equal lines. */
+  text-wrap: wrap;
 }
 
 .starters ul {
