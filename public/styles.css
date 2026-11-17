@@ -7,8 +7,7 @@
   --ink: #1f2a44; /* Slide ink: body text */
   --graphite: #55607a; /* margin notes, secondary text */
   --violet: #6b4fa0; /* Butterfly violet: links, buttons, focus only */
-  --amber: #8a5a00; /* Limit amber: "evidence is limited" and refusal only */
-  --amber-tint: #f6e7c1;
+  --amber: #8a5a00; /* Limit amber: text and a thin left line, "evidence is limited" and refusal only */
   --edge: #d5dbe5; /* a pale tint of graphite for the few lines we draw */
 
   --reading: "Literata", Georgia, serif;
@@ -177,6 +176,86 @@ li,
 main {
   padding: 40px var(--gutter) 80px;
   max-width: calc(var(--measure) + var(--margin-col) + 2 * var(--gutter) + 96px);
+}
+
+/* Wide screens: a side column holds the starter questions (Ask) or the search and
+   group links (Glossary). Reading lines keep their length; the page just uses the room. */
+@media (min-width: 1100px) {
+  main:has(.ask-layout, .glossary-layout) {
+    max-width: calc(1280px + 2 * var(--gutter));
+  }
+
+  .ask-layout {
+    display: grid;
+    grid-template-columns: minmax(0, calc(var(--measure) + var(--margin-col) + 96px)) 300px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* The question box fills its column, so the starters do not float far off to the side. */
+  .ask-layout .ask-form {
+    max-width: none;
+  }
+
+  .ask-layout .starters {
+    position: sticky;
+    top: 24px;
+    margin-top: 28px;
+  }
+
+  .glossary-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+    margin-top: 24px;
+  }
+
+  .glossary-side {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+
+  .glossary-side .glossary-search {
+    margin-top: 0;
+  }
+
+  .glossary-side .glossary-jump {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .glossary-layout .glossary {
+    max-width: none;
+  }
+
+  .glossary-layout .glossary-group:first-child h2 {
+    margin-top: 0;
+  }
+
+  /* The side column is always in view, so the corner link is not needed. */
+  .to-groups {
+    display: none;
+  }
+}
+
+.glossary-jump-title {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .glossary-jump-title {
+    display: block;
+    font: 500 1rem/1.4 var(--ui);
+    color: var(--graphite);
+    margin: 22px 0 4px;
+  }
+
+  .glossary-side .glossary-jump {
+    margin-top: 0;
+  }
 }
 
 .lede {
@@ -523,9 +602,9 @@ li > .evidence-bar:first-child {
   font: 400 1.125rem/1.6 var(--reading);
 }
 
+/* Same quiet box as the other messages; a thin amber line marks it, like a limited claim. */
 .message.is-refusal {
-  background: var(--amber-tint);
-  border-color: var(--amber);
+  border-left: 3px solid var(--amber);
 }
 
 .message.is-refusal h2 {

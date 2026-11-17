@@ -16,14 +16,21 @@
       <p class="lede" data-t="glossaryLede"></p>
       <p class="glossary-note" data-t="glossaryNote"></p>
 
-      <div class="glossary-search">
-        <label for="term-search" data-t="glossarySearch">Find a term</label>
-        <input type="search" id="term-search" autocomplete="off" />
+      <!-- On wide screens the search and group links sit in a left column that stays in view. -->
+      <div class="glossary-layout">
+        <aside class="glossary-side">
+          <div class="glossary-search">
+            <label for="term-search" data-t="glossarySearch">Find a term</label>
+            <input type="search" id="term-search" autocomplete="off" />
+          </div>
+          <p class="glossary-jump-title" data-t="glossaryJump" aria-hidden="true">Groups of terms</p>
+          <nav class="glossary-jump" id="glossary-jump"></nav>
+        </aside>
+        <div>
+          <div class="glossary" id="glossary"></div>
+          <p class="lede" id="glossary-none" data-t="glossaryNone" hidden></p>
+        </div>
       </div>
-
-      <nav class="glossary-jump" id="glossary-jump"></nav>
-      <div class="glossary" id="glossary"></div>
-      <p class="lede" id="glossary-none" data-t="glossaryNone" hidden></p>
       <a class="to-groups" id="to-groups" href="#top" hidden></a>
     </main>
     <script type="module" src="/glossary.js"></script>

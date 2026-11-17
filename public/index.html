@@ -16,6 +16,8 @@
       <h1 data-t="askTitle">Understand a lab term, and see where the answer came from</h1>
       <p class="lede" data-t="askLede"></p>
 
+      <div class="ask-layout">
+      <div class="ask-main">
       <form class="ask-form" id="ask-form" novalidate>
         <label for="question" data-t="askLabel">Your question</label>
         <textarea id="question" name="question" rows="2" maxlength="500" data-t-placeholder="askPlaceholder" aria-describedby="ask-hint"></textarea>
@@ -28,11 +30,14 @@
 
       <!-- Loading, answer, refusal, out-of-scope and error all appear here. -->
       <section class="result" id="result" aria-live="polite" hidden></section>
+      </div>
 
-      <section class="starters" id="starters">
-        <h2 data-t="startersTitle">Questions people start with</h2>
+      <!-- Beside the answer on wide screens, below it on narrow ones. -->
+      <aside class="starters" id="starters" aria-labelledby="starters-title">
+        <h2 id="starters-title" data-t="startersTitle">Questions people start with</h2>
         <ul id="starter-list"></ul>
-      </section>
+      </aside>
+      </div>
 
       <noscript><p class="lede">This page needs JavaScript to send your question.</p></noscript>
     </main>
