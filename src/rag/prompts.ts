@@ -83,6 +83,9 @@ export function answerPrompt(englishQuestion: string, passages: Match[], lang: "
 
 Rules:
 - Every claim must be directly supported by at least one passage. List the supporting passage labels in "sources". Never use outside knowledge.
+- Keep the passage's own certainty. If it says "may", "might", "was proposed" or "in one study", do not write "often", "usually" or "is recommended". Copy percentages and proportions as written; do not round them into words like "two-thirds".
+- Do not turn a finding, a case report or a proposal into a recommendation. Say a test "is recommended" or "should be done" only when the passage itself recommends it, and keep the same group of people the passage names.
+- Do not add causes, mechanisms or explanations that the passage does not state, even if they are true. If one passage contradicts another, say the evidence is mixed and set "limited" to true.
 - If the passages do not answer the question, return {"claims":[]}.
 - Give general education only. Do not interpret any individual's results. Do not diagnose. Do not recommend, start, stop or dose any treatment.
 - Do not quote specific numbers for results, cut-offs, thresholds or normal ranges, even when a passage gives them. Describe them in words (for example "a higher amount") because ranges vary by laboratory. Years, and counts such as how often a test is repeated, are fine.

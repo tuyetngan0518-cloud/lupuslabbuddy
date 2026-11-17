@@ -100,6 +100,16 @@ if (flag("--save-from-index")) {
 const missing = chunks.filter((c) => !saved.has(fingerprint(c)));
 console.log(`${chunks.length} passages; ${chunks.length - missing.length} already saved; ${missing.length} passages to embed.`);
 
+// Safety limit for the weekly job: if far more passages changed than a normal week brings,
+// stop before spending the day's allowance and let a person look first.
+const maxIdx = process.argv.indexOf("--max-new");
+const maxNew = maxIdx >= 0 ? Number(process.argv[maxIdx + 1]) : Infinity;
+if (Number.isNaN(maxNew)) throw new Error("--max-new needs a number, e.g. --max-new 1000");
+if (missing.length > maxNew) {
+  console.log(`Stopped: ${missing.length} passages to embed is more than the limit of ${maxNew}. Nothing was embedded.`);
+  process.exit(1);
+}
+
 let spent = 0;
 const embedder = getEmbedder({
   CF_ACCOUNT_ID: accountId,
@@ -160,3 +170,21 @@ for (let i = 0; i < toLoad.length; i += BATCH) {
   process.stdout.write(`\rLoaded ${Math.min(i + BATCH, toLoad.length)} of ${toLoad.length} passages`);
 }
 console.log(toLoad.length ? "\nDone. The index can take a minute or two to finish updating." : "Nothing new to load. The index is up to date.");
+
+// ---- remove passages that are no longer in the library ----
+// A paper can drop out of the library on a later run; its passages must not stay searchable.
+const keep = new Set(chunks.map((c) => c.id));
+const stale: string[] = [];
+let cursor: string | undefined;
+do {
+  const page = await call(`/${INDEX_NAME}/list?count=1000${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+  for (const v of page.vectors ?? []) if (!keep.has(v.id)) stale.push(v.id);
+  cursor = page.isTruncated ? page.nextCursor : undefined;
+} while (cursor);
+// Guard: a half-finished fetch could make most of the index look "old". Never remove more than a fifth.
+if (stale.length > (keep.size + stale.length) / 5) {
+  console.log(`Stopped: ${stale.length} passages would be removed, which is too many. Check the ingest log; nothing was removed.`);
+  process.exit(1);
+}
+for (let i = 0; i < stale.length; i += 100) await post(`/${INDEX_NAME}/delete_by_ids`, { ids: stale.slice(i, i + 100) });
+console.log(stale.length ? `Removed ${stale.length} passages whose article is no longer in the library.` : "No old passages to remove.");

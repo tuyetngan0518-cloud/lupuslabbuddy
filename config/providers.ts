@@ -32,7 +32,7 @@ export const providers = {
   retrieval: {
     topK: 8, // how many passages to fetch per question
     maxPerArticle: 3, // at most this many passages from one article
-    minScore: 0.55, // similarity threshold; tuned during the eval step
+    minScore: 0.7, // similarity threshold, set from the 17 Nov 2026 eval: good answers used passages scoring 0.73 or more; uncovered questions topped out at 0.61 to 0.72
     minChunks: 2, // fewer passing passages than this means we refuse
     maxChunks: 6000, // hard cap so the index stays inside the free tier
   },

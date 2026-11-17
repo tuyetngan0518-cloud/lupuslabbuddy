@@ -81,11 +81,13 @@ Vietnamese style: write the way a Vietnamese health writer would, not word for w
 
 - `npm run dev`: run the app locally at http://localhost:8787
 - `npm run ingest -- --limit 20`: fetch and chunk a small sample of articles into `data/` (omit the limit for the full run)
-- `npm run embed`: embed only passages not yet saved in `data/embeddings.jsonl`, then load them into the Vectorize index (`-- --rebuild` reloads the whole index from the saved file; `-- --save-from-index` copies embeddings from the index into the file). Never delete `data/embeddings.jsonl`: re-creating it costs about 7,500 neurons
+- `npm run embed`: embed only passages not yet saved in `data/embeddings.jsonl`, then load them into the Vectorize index (`-- --rebuild` reloads the whole index from the saved file; `-- --save-from-index` copies embeddings from the index into the file; `-- --max-new 1000` stops before embedding if more passages changed than that). It also removes index passages whose article left the library, but never more than a fifth of the index. Never delete `data/embeddings.jsonl`: re-creating it costs about 7,500 neurons
 - `npm run eval`: run the 40 test runs in `eval/questions.json`; resumable, stops when the allowance runs out (`-- --report` prints saved results without model calls; `-- --fresh` starts over). A full run costs most of a day's allowance, so ask the owner first
 - `npm run ask -- "question"`: test the answer flow from the command line (`--vi` for Vietnamese, `--trace` to see each step)
 - `npm run typecheck`: check the code for type errors
 - `npm run deploy`: publish to Cloudflare (needs `npx wrangler login` once)
+
+Weekly refresh: `.github/workflows/refresh.yml` runs every Monday 03:00 UTC (or by hand from the GitHub Actions tab): ingest, `embed --save-from-index` (data/ is not on GitHub), then `embed --max-new 1000`. It reads the two secrets from GitHub repository secrets and keeps a 30-day copy of the library as a job download. GitHub turns scheduled jobs off after 60 days with no repo activity; re-enable from the Actions tab.
 
 Secrets live in `.env` (ignored by git) as `CF_ACCOUNT_ID` and `CF_AI_TOKEN`. They are deliberately not named `CLOUDFLARE_*`, because Cloudflare's own tool would then use this narrow token for publishing and fail. Never print or commit them.
 

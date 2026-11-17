@@ -1,0 +1,51 @@
+# Weekly library refresh: fetch new open-access papers and add their passages to the search index.
+# Runs on GitHub's computers. Needs two repository secrets: CF_ACCOUNT_ID and CF_AI_TOKEN.
+name: Weekly library refresh
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # every Monday at 03:00 UTC
+  workflow_dispatch: # also allows starting it by hand from the Actions tab
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      # The npm scripts read secrets from .env, so write one from the GitHub secrets.
+      - name: Write .env
+        run: printf 'CF_ACCOUNT_ID=%s\nCF_AI_TOKEN=%s\n' "$CF_ACCOUNT_ID" "$CF_AI_TOKEN" > .env
+
+      - name: Fetch and cut articles
+        run: npm run ingest
+
+      # data/ is not on GitHub, so copy the existing embeddings back out of the index (costs no neurons).
+      - name: Recover saved embeddings
+        run: npm run embed -- --save-from-index
+
+      # Embed only new passages; stop if far more changed than a normal week brings (about 2,800 neurons).
+      - name: Embed new passages and update the index
+        run: npm run embed -- --max-new 1000
+
+      - name: Keep a copy of the library
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: library-${{ github.run_number }}
+          path: |
+            data/articles.json
+            data/chunks.jsonl
+            data/link-only.json
+            data/ingest.log
+          retention-days: 30
+          if-no-files-found: ignore

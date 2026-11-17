@@ -43,6 +43,11 @@ export interface AskDeps {
 // A first, cheap check before any model is called: "my/tôi ..." together with a number.
 const PERSONAL = /(^|[\s,.])(my|mine|i have|i got|i am|i'm|của tôi|tôi|của mình|của em|mẹ tôi|bố tôi|con tôi)([\s,.]|$)/i;
 const HAS_NUMBER = /\d/;
+// A lab value or cut-off: a number followed by a lab unit, e.g. "500 mg/24 hours", "3.5 g/dL", "60 mL/min".
+// Ranges vary by laboratory, so claims quoting one are dropped. Percentages of patients are allowed.
+// Also doses written in words ("five milligrams per kilogram") and counts "per microliter" or "/mm³".
+const LAB_VALUE =
+  /\d([.,\s]\d+)*\s*(mg|g\/|g\s?(per|mỗi)|mmol|[µμu]mol|mL|dL|IU|U\/|mm\/h|mm\s?(per|trong)|×?\s?10\^?\d+\s?\/L|\/L\b|\/\s?mm[3³]|\/\s?[µμu]L|per\s+(micro|cubic))|(milligram|mg)s?\s*(per|\/|mỗi)\s*(kilogram|kg)/i;
 
 function parseJson(text: string): any {
   const start = text.indexOf("{");
@@ -101,6 +106,10 @@ export async function ask(deps: AskDeps, question: string, lang: Lang): Promise<
     if (typeof c?.text !== "string" || !c.text.trim() || !Array.isArray(c.sources)) continue;
     const sources = toSources(c.sources, passages);
     if (sources.length === 0) continue;
+    if (LAB_VALUE.test(c.text)) {
+      trace("dropped", `lab value: ${c.text}`);
+      continue;
+    }
     claims.push({ text: c.text.trim(), limited: c.limited === true, sources });
   }
   if (claims.length === 0) return { state: "refusal" };
