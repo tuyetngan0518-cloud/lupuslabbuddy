@@ -36,6 +36,7 @@ export const strings = {
       "Evidence level shows what kind of paper each source is.",
     ],
     onThisPage: "On this page",
+    forExample: "For example:",
     footerSources: "Sources: open-access papers from Europe PMC and PubMed Central",
 
     loadingSearch: "Searching the sources",
@@ -180,6 +181,7 @@ export const strings = {
       "Mức độ bằng chứng cho biết mỗi nguồn là loại bài báo nào.",
     ],
     onThisPage: "Trên trang này",
+    forExample: "Ví dụ:",
     footerSources: "Nguồn: các bài báo truy cập mở từ Europe PMC và PubMed Central",
 
     loadingSearch: "Đang tìm trong các nguồn tham khảo",

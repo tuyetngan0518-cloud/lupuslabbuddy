@@ -224,10 +224,15 @@ window.matchMedia("(min-width: 821px)").addEventListener("change", (e) => {
 
 onLang((s) => {
   starterList.replaceChildren(...starterButtons(s.starters));
-  // The last step shows a small example of the evidence-level scale.
+  // The last step shows a labelled example of the evidence-level scale on its own line.
+  const example = "observational study";
   howSteps.replaceChildren(
     ...s.howSteps.map((text, i) =>
-      el("li", {}, text, i === s.howSteps.length - 1 ? evidenceBar("observational study") : null),
+      el("li", {}, text,
+        i === s.howSteps.length - 1
+          ? el("span", { class: "how-example" }, s.forExample + " ", evidenceBar(example), " " + s.levels[example])
+          : null,
+      ),
     ),
   );
   draw();

@@ -276,8 +276,15 @@ main {
   margin-top: 6px;
 }
 
-.how .evidence-bar {
-  margin-left: 10px;
+.how-example {
+  display: block;
+  margin-top: 2px;
+  font: 400 0.875rem/1.5 var(--ui);
+  color: var(--graphite);
+}
+
+.how-example .evidence-bar {
+  margin: 0 4px 0 2px;
 }
 
 @media (min-width: 1100px) {
