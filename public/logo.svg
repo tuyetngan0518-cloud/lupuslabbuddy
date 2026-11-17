@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Header mark: same wings as favicon.svg, always Butterfly violet because the page is always light. -->
+  <g id="w" fill="#6B4FA0">
+    <path d="M15 15.5C13 8 8 3 4.5 4 1.5 5 2 12 6 14.5 9 16 12 16 15 15.5Z" />
+    <path d="M15 17C11 17 6 18 5.5 22 5 26 9 28 12 25.5 14 23.5 15 20 15 17Z" />
+  </g>
+  <use href="#w" transform="translate(32 0) scale(-1 1)" />
+</svg>

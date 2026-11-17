@@ -337,7 +337,11 @@ function buildHeader() {
     el(
       "div",
       { class: "header-row" },
-      el("a", { class: "site-name", href: "/", text: "Lupus Lab Buddy" }),
+      el("a", { class: "site-name", href: "/" },
+        // Empty alt: the name next to the mark already says what it is.
+        el("img", { src: "/logo.svg", alt: "", width: "22", height: "22" }),
+        "Lupus Lab Buddy",
+      ),
       el("nav", { class: "site-nav", "aria-label": "Main" },
         link("/", "navAsk", "ask"),
         link("/glossary.html", "navGlossary", "glossary"),

@@ -51,7 +51,7 @@ Evidence level tiers: guideline or systematic review; clinical trial; observatio
 | Sheet | `#FFFFFF` | answer surface |
 | Slide ink | `#1F2A44` | body text |
 | Graphite | `#55607A` | margin notes, secondary text |
-| Butterfly violet | `#6B4FA0` | links, buttons, focus ring only |
+| Butterfly violet | `#6B4FA0` | links, buttons, focus ring, logo only |
 | Limit amber | `#8A5A00` on `#F6E7C1` | only "evidence is limited" and refusal |
 
 - Type: Literata for answer text (18px, line height 1.65, max 68 characters per line); Be Vietnam Pro for interface, margin notes, labels. Both self-hosted with the Vietnamese subset.

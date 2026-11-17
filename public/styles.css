@@ -92,6 +92,11 @@ p {
   margin-right: auto;
 }
 
+.site-name img {
+  margin-right: 8px;
+  vertical-align: -4px;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
