@@ -1,5 +1,7 @@
 # Lupus Lab Buddy
 
+**Live site: https://lupuslabbuddy.ngannguyen.workers.dev/**
+
 Lupus Lab Buddy explains the lab tests used to monitor lupus (SLE), in English and Vietnamese. Every sentence in an answer lists the open-access medical papers it came from, with an evidence level for each paper.
 
 ![An answer to "Why are complement C3 and C4 checked in lupus?", with each sentence's sources and evidence level in the right margin](docs/images/answer-desktop.png)
