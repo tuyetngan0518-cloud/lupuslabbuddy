@@ -67,7 +67,7 @@ Examples:
 - "Có nên giảm liều prednisone không?" -> diagnosis_or_treatment
 - "Do I have lupus?" -> diagnosis_or_treatment
 
-Also translate the question into clear English for a literature search. The question may be in Vietnamese. Spell out abbreviations (HCQ = hydroxychloroquine, MMF = mycophenolate mofetil, MTX = methotrexate, AZA = azathioprine, CBC = complete blood count, ESR = erythrocyte sedimentation rate). For a question about a medicine, ask what it is used for in lupus and which lab tests are checked while taking it.${termPairs}
+Also translate the question into clear English for a literature search. The question may be in Vietnamese. Spell out abbreviations (HCQ = hydroxychloroquine, MMF = mycophenolate mofetil, MTX = methotrexate, AZA = azathioprine, CBC = complete blood count, ESR = erythrocyte sedimentation rate). Spell out the full name of a test after its abbreviation (ANA = antinuclear antibody). For a short question that only names a test ("What is X?", "X là gì?"), write "What is X (full name), what does it measure, and why is it checked in lupus?", so the search has enough words to match. For a question about a medicine, ask what it is used for in lupus and which lab tests are checked while taking it.${termPairs}
 
 Reply with JSON only: {"language":"en" or "vi","scope":"...","english_question":"..."}`,
     },
@@ -85,8 +85,8 @@ export function answerPrompt(englishQuestion: string, passages: Match[], lang: "
   const pinned = lang === "vi" ? pinnedTerms(`${englishQuestion}\n${sources}`) : "";
   const language =
     lang === "vi"
-      ? `Write every claim in natural Vietnamese, the way a Vietnamese health writer would phrase it, not word for word from English. Say "bệnh lupus" or "người bệnh lupus", never "trong lupus".${pinned ? ` Use exactly these Vietnamese terms:\n${pinned}` : ""}`
-      : "Write every claim in English.";
+      ? `Write every claim in natural Vietnamese, the way a Vietnamese health writer would phrase it, not word for word from English. Use a polite, formal register suited to health information, in short plain sentences; no slang or casual phrases. Say "bệnh lupus" or "người bệnh lupus", never "trong lupus".${pinned ? ` Use exactly these Vietnamese terms:\n${pinned}` : ""}`
+      : "Write every claim in English, in a polite, formal register suited to health information, in short plain sentences; no slang, contractions or casual phrases.";
 
   return [
     {

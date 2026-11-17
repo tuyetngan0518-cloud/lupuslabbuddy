@@ -82,8 +82,8 @@ export const antibodies: Record<string, TermDetail> = {
       ["know", "Anti-Ro does not follow disease activity, so it is not repeated at each visit."],
     ],
     vi: [
-      ["what", "Anti-Ro, còn gọi là anti-SSA, là tự kháng thể chống lại một protein tên Ro. Một phần người bệnh lupus có kháng thể này, và nó cũng thường gặp trong hội chứng Sjögren, một bệnh tự miễn có liên quan."],
-      ["why", "Kháng thể này liên quan đến một số biểu hiện của lupus, ví dụ ban da xuất hiện khi ra nắng. Nó quan trọng nhất trong thời kỳ mang thai: kháng thể có thể đi qua nhau thai và, trong một số ít trường hợp, ảnh hưởng đến da hoặc nhịp tim của em bé. Vì vậy phụ nữ bị lupus đang mang thai hoặc dự định mang thai thường được làm xét nghiệm này."],
+      ["what", "Anti-Ro, còn gọi là anti-SSA, là tự kháng thể chống lại một protein tên Ro. Một phần người bệnh lupus có kháng thể này, và kháng thể này cũng thường gặp trong hội chứng Sjögren, một bệnh tự miễn có liên quan."],
+      ["why", "Kháng thể này liên quan đến một số biểu hiện của lupus, ví dụ ban da xuất hiện khi ra nắng. Anti-Ro quan trọng nhất trong thời kỳ mang thai: kháng thể có thể đi qua nhau thai và, trong một số ít trường hợp, ảnh hưởng đến da hoặc nhịp tim của em bé. Vì vậy phụ nữ bị lupus đang mang thai hoặc dự định mang thai thường được làm xét nghiệm này."],
       ["report", "Kết quả được ghi là dương tính hoặc âm tính, đôi khi kèm con số. Một số phiếu kết quả tách thành Ro52 và Ro60, là hai protein mục tiêu khác nhau."],
       ["know", "Anti-Ro không thay đổi theo mức độ hoạt động bệnh, nên không làm lại ở mỗi lần khám."],
     ],
@@ -142,7 +142,7 @@ export const antibodies: Record<string, TermDetail> = {
       ["know", "Blood-thinning medicines can interfere with this test, so laboratories ask which medicines a person is taking."],
     ],
     vi: [
-      ["what", "Kháng đông lupus là một trong ba xét nghiệm kháng thể kháng phospholipid. Tên gọi này dễ gây hiểu lầm ở hai điểm. Một là người không bị lupus cũng có thể có kháng thể này. Hai là tuy làm máu đông chậm hơn trong ống nghiệm, trong cơ thể nó lại liên quan đến việc máu dễ đông hơn chứ không phải khó đông hơn."],
+      ["what", "Kháng đông lupus là một trong ba xét nghiệm kháng thể kháng phospholipid. Tên gọi này dễ gây hiểu lầm ở hai điểm. Một là người không bị lupus cũng có thể có kháng thể này. Hai là tuy làm máu đông chậm hơn trong ống nghiệm, trong cơ thể kháng thể này lại liên quan đến việc máu dễ đông hơn chứ không phải khó đông hơn."],
       ["why", "Trong các xét nghiệm kháng phospholipid, đây là xét nghiệm liên quan chặt chẽ nhất đến cục máu đông và biến chứng thai kỳ."],
       ["report", "Kháng đông lupus không được đo trực tiếp. Phòng xét nghiệm làm các xét nghiệm thời gian đông máu, thường có tên dRVVT và aPTT, để xem thời gian đông có kéo dài không, và có trở về bình thường theo kiểu đặc trưng không. Kết quả được ghi là có hoặc không, hay dương tính hoặc âm tính."],
       ["know", "Thuốc chống đông có thể làm sai lệch xét nghiệm này, nên phòng xét nghiệm thường hỏi người bệnh đang dùng thuốc gì."],

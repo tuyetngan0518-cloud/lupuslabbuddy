@@ -13,7 +13,7 @@ export const strings = {
     askLede: "Ask about a lab test used in lupus (SLE). Each part of the answer shows its sources and evidence level.",
     askLabel: "Your question",
     askPlaceholder: "What does anti-dsDNA measure?",
-    askHint: "Do not type your own results or personal details. This tool cannot read them.",
+    askHint: "Please do not enter your own results or personal details.",
     ask: "Ask",
     answerIn: "Answers are written in English.",
     startersTitle: "Questions people start with",
@@ -52,46 +52,46 @@ export const strings = {
     yes: "Yes",
     no: "No",
     feedbackSent: "Feedback sent",
-    feedbackFailed: "Feedback was not sent. Try again later.",
-    tellMore: "Tell us what was wrong",
+    feedbackFailed: "Your feedback could not be sent. Please try again later.",
+    tellMore: "Report a problem",
 
     refusalTitle: "Not enough evidence to answer this",
-    refusalBody: "The sources this tool holds do not cover the question well enough. It is better to say so than to guess.",
+    refusalBody: "The sources do not cover this question clearly enough to answer it. Please rephrase it or choose a question below.",
 
     scope: {
       personal_result: [
         "This tool cannot interpret your own results",
-        "Your care team can, because they know your history and your lab's ranges. You can ask what a test measures instead.",
+        "Please ask your care team, who know your history and your laboratory's ranges. You may ask what a test measures.",
       ],
       diagnosis_or_treatment: [
         "This tool cannot diagnose or advise on treatment",
-        "Those decisions belong with your care team. You can ask what a lab test measures, or what a medicine is used for and which tests are checked while taking it. For example: “Which lab tests are checked while taking hydroxychloroquine?”",
+        "These decisions rest with your care team. You may ask what a lab test measures, or what a medicine is used for and which tests are checked while taking it. For example: “Which lab tests are checked while taking hydroxychloroquine?”",
       ],
       other_disease: [
         "This tool only covers lab tests in lupus",
-        "It has no sources about other conditions. You can ask about a test used in lupus instead.",
+        "This tool holds no sources on other conditions. You may ask about a test used in lupus.",
       ],
       not_lab: [
         "This tool only answers questions about lab tests in lupus",
-        "Try asking what a test measures, why it is checked, or how a lab report is laid out.",
+        "You may ask what a test measures, why it is checked, or how a report is laid out.",
       ],
     },
 
     errors: {
-      daily_limit: ["Today's free question limit is used up", "The limit is shared by everyone using this tool and refills within a day. Ask again later."],
-      service_problem: ["The answer service did not respond", "Wait a minute, then select Ask again."],
-      network: ["The connection dropped", "Check your internet, then select Ask again."],
-      empty_question: ["The question is empty", "Type a question about a lab test, then select Ask."],
-      question_too_long: ["The question is too long", "Shorten it to 500 characters or fewer, then select Ask again."],
-      not_configured: ["The answer service is not set up yet", "The site owner needs to connect it. Nothing is wrong on your side."],
-      bad_request: ["The question could not be sent", "Reload the page, then select Ask again."],
+      daily_limit: ["Today's free question limit is used up", "The limit is shared by everyone using this tool and refills within a day. Please try again later."],
+      service_problem: ["The answer service did not respond", "Please wait a minute, then select Ask again."],
+      network: ["The connection was interrupted", "Please check your internet connection, then select Ask again."],
+      empty_question: ["The question is empty", "Please type a question about a lab test, then select Ask."],
+      question_too_long: ["The question is too long", "Please shorten it to 500 characters or fewer, then select Ask again."],
+      not_configured: ["The answer service is not set up yet", "The site owner needs to connect it. No action is needed on your part."],
+      bad_request: ["The question could not be sent", "Please reload the page, then select Ask again."],
     },
 
     glossaryTitle: "Glossary",
     glossaryLede: "Lab terms and lupus medicines in English and Vietnamese. Select a term to read more. Explanations say what a term is, not what a result means for you.",
     glossaryNote: "These explanations were written for this glossary. They are not taken from the cited sources, and no expert has reviewed them.",
     glossarySearch: "Find a term",
-    glossaryNone: "No term matches. Try a shorter word.",
+    glossaryNone: "No matching term. Please try a shorter word.",
     glossaryJump: "Groups of terms",
     backToTop: "Back to top",
     glossaryGroups: {
@@ -123,7 +123,7 @@ export const strings = {
     },
 
     feedbackTitle: "Feedback",
-    feedbackLede: "Tell us what was wrong or unclear. Do not include your results or personal details.",
+    feedbackLede: "Please tell us what was wrong or unclear, without your results or personal details.",
     feedbackKind: "What is it about?",
     kinds: {
       wrong: "An answer seemed wrong",
@@ -147,14 +147,14 @@ export const strings = {
     askTitle: "Hiểu thuật ngữ xét nghiệm, và biết câu trả lời dựa trên nguồn nào",
     askLede: "Hỏi về một xét nghiệm thường dùng trong bệnh lupus (SLE). Mỗi ý trong câu trả lời đều kèm nguồn tham khảo và mức độ bằng chứng.",
     askLabel: "Câu hỏi của bạn",
-    askPlaceholder: "Xét nghiệm anti-dsDNA đo cái gì?",
-    askHint: "Đừng nhập kết quả xét nghiệm hay thông tin cá nhân của bạn. Công cụ này không đọc được những thông tin đó.",
+    askPlaceholder: "Xét nghiệm anti-dsDNA dùng để đo gì?",
+    askHint: "Vui lòng không nhập kết quả xét nghiệm hoặc thông tin cá nhân.",
     ask: "Hỏi",
     answerIn: "Câu trả lời được viết bằng tiếng Việt.",
     startersTitle: "Bạn có thể bắt đầu với những câu hỏi này",
     starters: [
       "Xét nghiệm ANA là gì?",
-      "Xét nghiệm anti-dsDNA đo cái gì?",
+      "Xét nghiệm anti-dsDNA dùng để đo gì?",
       "Vì sao người bệnh lupus cần xét nghiệm bổ thể C3 và C4?",
       "Vì sao người bệnh lupus cần xét nghiệm protein niệu?",
       "Lupus có thể gây ra những thay đổi gì trong công thức máu?",
@@ -187,20 +187,20 @@ export const strings = {
     yes: "Có",
     no: "Không",
     feedbackSent: "Đã gửi góp ý",
-    feedbackFailed: "Chưa gửi được góp ý. Hãy thử lại sau.",
-    tellMore: "Cho chúng tôi biết chỗ nào chưa đúng",
+    feedbackFailed: "Chưa gửi được góp ý. Vui lòng thử lại sau.",
+    tellMore: "Báo lỗi",
 
     refusalTitle: "Chưa đủ bằng chứng để trả lời câu hỏi này",
-    refusalBody: "Các nguồn tham khảo của công cụ này chưa đề cập đủ rõ đến câu hỏi. Thà nói rõ như vậy còn hơn đoán mò.",
+    refusalBody: "Các nguồn tham khảo chưa đề cập đủ rõ đến câu hỏi này. Vui lòng đặt câu hỏi theo cách khác hoặc chọn một câu hỏi bên dưới.",
 
     scope: {
       personal_result: [
         "Công cụ này không giải thích được kết quả của riêng bạn",
-        "Việc đó cần bác sĩ điều trị của bạn, vì họ nắm rõ bệnh sử của bạn và khoảng tham chiếu của phòng xét nghiệm. Thay vào đó, bạn có thể hỏi một xét nghiệm đo cái gì.",
+        "Vui lòng hỏi bác sĩ điều trị, người nắm rõ bệnh sử của bạn và khoảng tham chiếu của phòng xét nghiệm. Bạn có thể hỏi một xét nghiệm dùng để đo gì.",
       ],
       diagnosis_or_treatment: [
         "Công cụ này không chẩn đoán và không tư vấn điều trị",
-        "Những quyết định đó cần do bác sĩ điều trị của bạn đưa ra. Bạn có thể hỏi một xét nghiệm đo cái gì, hoặc một loại thuốc dùng để làm gì và cần xét nghiệm theo dõi độ an toàn của thuốc nào khi dùng. Ví dụ: “Người dùng hydroxychloroquine cần làm những xét nghiệm nào?”",
+        "Những quyết định này thuộc về bác sĩ điều trị. Bạn có thể hỏi một xét nghiệm dùng để đo gì, hoặc một loại thuốc dùng để làm gì và cần xét nghiệm theo dõi độ an toàn của thuốc nào khi dùng. Ví dụ: “Người dùng hydroxychloroquine cần làm những xét nghiệm nào?”",
       ],
       other_disease: [
         "Công cụ này chỉ nói về xét nghiệm trong bệnh lupus",
@@ -208,25 +208,25 @@ export const strings = {
       ],
       not_lab: [
         "Công cụ này chỉ trả lời câu hỏi về xét nghiệm trong bệnh lupus",
-        "Hãy thử hỏi một xét nghiệm đo cái gì, vì sao cần làm, hoặc phiếu kết quả được trình bày thế nào.",
+        "Bạn có thể hỏi một xét nghiệm dùng để đo gì, vì sao cần làm, hoặc phiếu kết quả được trình bày thế nào.",
       ],
     },
 
     errors: {
-      daily_limit: ["Đã hết lượt hỏi miễn phí của hôm nay", "Số lượt hỏi được dùng chung cho tất cả mọi người và sẽ có lại trong vòng một ngày. Hãy hỏi lại sau."],
-      service_problem: ["Dịch vụ trả lời không phản hồi", "Chờ một phút rồi bấm Hỏi lần nữa."],
-      network: ["Mất kết nối", "Kiểm tra kết nối mạng rồi bấm Hỏi lần nữa."],
-      empty_question: ["Câu hỏi đang trống", "Nhập một câu hỏi về xét nghiệm rồi bấm Hỏi."],
-      question_too_long: ["Câu hỏi quá dài", "Rút gọn còn tối đa 500 ký tự rồi bấm Hỏi lần nữa."],
-      not_configured: ["Dịch vụ trả lời chưa được thiết lập", "Chủ trang cần kết nối dịch vụ. Lỗi không phải do bạn."],
-      bad_request: ["Không gửi được câu hỏi", "Tải lại trang rồi bấm Hỏi lần nữa."],
+      daily_limit: ["Đã hết lượt hỏi miễn phí của hôm nay", "Số lượt hỏi được dùng chung cho tất cả mọi người và sẽ có lại trong vòng một ngày. Vui lòng thử lại sau."],
+      service_problem: ["Dịch vụ trả lời không phản hồi", "Vui lòng chờ một phút rồi bấm Hỏi lại."],
+      network: ["Kết nối bị gián đoạn", "Vui lòng kiểm tra kết nối mạng rồi bấm Hỏi lại."],
+      empty_question: ["Câu hỏi đang trống", "Vui lòng nhập một câu hỏi về xét nghiệm rồi bấm Hỏi."],
+      question_too_long: ["Câu hỏi quá dài", "Vui lòng rút gọn còn tối đa 500 ký tự rồi bấm Hỏi lại."],
+      not_configured: ["Dịch vụ trả lời chưa được thiết lập", "Chủ trang cần kết nối dịch vụ. Bạn không cần làm gì thêm."],
+      bad_request: ["Không gửi được câu hỏi", "Vui lòng tải lại trang rồi bấm Hỏi lại."],
     },
 
     glossaryTitle: "Bảng thuật ngữ",
     glossaryLede: "Thuật ngữ xét nghiệm và các thuốc điều trị lupus, bằng tiếng Anh và tiếng Việt. Chọn một thuật ngữ để đọc thêm. Phần giải thích cho biết thuật ngữ là gì, không nói kết quả của bạn có ý nghĩa gì.",
     glossaryNote: "Các phần giải thích này được viết riêng cho bảng thuật ngữ, không lấy từ các nguồn tham khảo được trích dẫn và chưa được chuyên gia thẩm định.",
     glossarySearch: "Tìm thuật ngữ",
-    glossaryNone: "Không tìm thấy thuật ngữ phù hợp. Hãy thử một từ ngắn hơn.",
+    glossaryNone: "Không tìm thấy thuật ngữ phù hợp. Vui lòng thử một từ ngắn hơn.",
     glossaryJump: "Các nhóm thuật ngữ",
     backToTop: "Về đầu trang",
     glossaryGroups: {
@@ -258,7 +258,7 @@ export const strings = {
     },
 
     feedbackTitle: "Góp ý",
-    feedbackLede: "Cho chúng tôi biết chỗ nào chưa đúng hoặc chưa rõ. Đừng ghi kết quả xét nghiệm hay thông tin cá nhân.",
+    feedbackLede: "Vui lòng cho biết điểm nào chưa đúng hoặc chưa rõ, không kèm kết quả xét nghiệm hay thông tin cá nhân.",
     feedbackKind: "Bạn muốn góp ý về điều gì?",
     kinds: {
       wrong: "Câu trả lời có vẻ sai",
