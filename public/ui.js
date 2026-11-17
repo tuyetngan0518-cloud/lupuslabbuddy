@@ -65,7 +65,7 @@ export const strings = {
       ],
       diagnosis_or_treatment: [
         "This tool cannot diagnose or advise on treatment",
-        "Those decisions belong with your care team. You can ask what a lab test measures or why it is checked.",
+        "Those decisions belong with your care team. You can ask what a lab test measures, or what a medicine is used for and which tests are checked while taking it. For example: “Which lab tests are checked while taking hydroxychloroquine?”",
       ],
       other_disease: [
         "This tool only covers lab tests in lupus",
@@ -200,7 +200,7 @@ export const strings = {
       ],
       diagnosis_or_treatment: [
         "Công cụ này không chẩn đoán và không tư vấn điều trị",
-        "Những quyết định đó cần do bác sĩ điều trị của bạn đưa ra. Bạn có thể hỏi một xét nghiệm đo cái gì hoặc vì sao cần làm.",
+        "Những quyết định đó cần do bác sĩ điều trị của bạn đưa ra. Bạn có thể hỏi một xét nghiệm đo cái gì, hoặc một loại thuốc dùng để làm gì và cần xét nghiệm theo dõi độ an toàn của thuốc nào khi dùng. Ví dụ: “Người dùng hydroxychloroquine cần làm những xét nghiệm nào?”",
       ],
       other_disease: [
         "Công cụ này chỉ nói về xét nghiệm trong bệnh lupus",

@@ -60,22 +60,38 @@ const SCOPES = ["in_scope", "personal_result", "diagnosis_or_treatment", "other_
 // bge embedding models search better when the question carries this prefix.
 const QUERY_PREFIX = "Represent this sentence for searching relevant passages: ";
 
-export async function ask(deps: AskDeps, question: string, lang: Lang): Promise<AskResult> {
-  const trace = deps.trace ?? (() => {});
-  const q = question.trim().slice(0, 500);
+export type ScopeResult =
+  | { inScope: true; englishQuestion: string }
+  | { inScope: false; reason: OutOfScopeReason };
 
+/** Step 1 on its own: is the question in scope, and what is it in English? */
+export async function checkScope(
+  llm: LlmProvider,
+  question: string,
+  trace: (step: string, detail: unknown) => void = () => {},
+): Promise<ScopeResult> {
+  const q = question.trim().slice(0, 500);
   if (PERSONAL.test(q) && HAS_NUMBER.test(q)) {
     trace("scope", "rule: personal pronoun with a number");
-    return { state: "out_of_scope", reason: "personal_result" };
+    return { inScope: false, reason: "personal_result" };
   }
-
-  // 1. Scope check and translation in one small model call.
-  const scoped = parseJson(await deps.llm.generate(scopePrompt(q), { json: true, maxTokens: 600 }));
+  // Scope check and translation in one small model call.
+  const scoped = parseJson(await llm.generate(scopePrompt(q), { json: true, maxTokens: 600 }));
   trace("scope", scoped);
   if (!SCOPES.includes(scoped.scope) || typeof scoped.english_question !== "string") {
     throw new Error("The scope check gave an unexpected reply.");
   }
-  if (scoped.scope !== "in_scope") return { state: "out_of_scope", reason: scoped.scope };
+  if (scoped.scope !== "in_scope") return { inScope: false, reason: scoped.scope };
+  return { inScope: true, englishQuestion: scoped.english_question };
+}
+
+export async function ask(deps: AskDeps, question: string, lang: Lang): Promise<AskResult> {
+  const trace = deps.trace ?? (() => {});
+
+  // 1. Scope check and translation.
+  const scope = await checkScope(deps.llm, question, trace);
+  if (!scope.inScope) return { state: "out_of_scope", reason: scope.reason };
+  const scoped = { english_question: scope.englishQuestion };
 
   // 2. Search the passages.
   const [vector] = await deps.embedder.embed([QUERY_PREFIX + scoped.english_question]);

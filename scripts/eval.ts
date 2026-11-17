@@ -4,13 +4,14 @@
 //   npm run eval              run what is not done yet, then print the report
 //   npm run eval -- --report  print the report from saved results, no model calls
 //   npm run eval -- --fresh   forget saved results and start again
+//   npm run eval -- --scope-only  run only the scope check (about 20 neurons a question), nothing saved
 //
 // Each result is saved as it finishes, so the run can stop when the daily
 // allowance is used up and carry on another day.
 import { appendFileSync, existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { usageMeter } from "../src/providers/cost.ts";
 import { getEmbedder, getLlm } from "../src/providers/index.ts";
-import { ask, type AskResult, type Lang } from "../src/rag/ask.ts";
+import { ask, checkScope, type AskResult, type Lang } from "../src/rag/ask.ts";
 import { restStore, type Match } from "../src/rag/vector-store.ts";
 
 interface Question {
@@ -136,7 +137,9 @@ function report(): void {
 
   const inScope = done.filter((r) => r.expect === "answer");
   const answered = inScope.filter((r) => r.state === "answer");
-  const hit = inScope.filter((r) => r.retrieved.slice(0, 5).some((id) => sourcesOf.get(r.id)!.includes(id)));
+  // Only questions with expected articles listed can be checked for this.
+  const withSources = inScope.filter((r) => sourcesOf.get(r.id)?.length);
+  const hit = withSources.filter((r) => r.retrieved.slice(0, 5).some((id) => sourcesOf.get(r.id)!.includes(id)));
 
   const outScope = done.filter((r) => r.expect === "out_of_scope");
   const caught = outScope.filter((r) => r.state === "out_of_scope");
@@ -165,7 +168,7 @@ function report(): void {
 
   console.log(`\nEvaluation report: ${done.length} of ${runs.length} runs done\n`);
   console.log(`In-scope questions answered        ${pct(answered.length, inScope.length)}`);
-  console.log(`Expected article in top 5 passages ${pct(hit.length, inScope.length)}   pass mark 85%`);
+  console.log(`Expected article in top 5 passages ${pct(hit.length, withSources.length)}   pass mark 85%`);
   console.log(`Out-of-scope questions caught      ${pct(caught.length, outScope.length)}   pass mark 100%`);
   console.log(`  with the expected reason         ${pct(rightReason.length, caught.length)}`);
   console.log(`Uncovered questions refused        ${pct(refused.length, uncovered.length)}   pass mark 100%`);
@@ -195,5 +198,39 @@ function report(): void {
   if (full.length) console.log(`\nReading sheet written to ${REVIEW} (${allClaims.length} claims).`);
 }
 
-if (!flag("--report")) await runAll();
-report();
+// Only the scope check, for every run. Questions expected to be answered or refused
+// for lack of evidence should both come out in scope.
+async function scopeOnly(): Promise<void> {
+  const accountId = process.env.CF_ACCOUNT_ID;
+  const token = process.env.CF_AI_TOKEN;
+  if (!accountId || !token) throw new Error("Fill in the .env file first.");
+  let right = 0;
+  let total = 0;
+  for (const run of runs) {
+    const meter = usageMeter();
+    const llm = getLlm({ CF_ACCOUNT_ID: accountId, CF_AI_TOKEN: token, onUsage: meter.onUsage });
+    try {
+      const s = await checkScope(llm, run.text);
+      const wantIn = run.q.expect !== "out_of_scope";
+      const ok = s.inScope ? wantIn : !wantIn && s.reason === run.q.reason;
+      total++;
+      if (ok) right++;
+      const got = s.inScope ? `in_scope  ${s.englishQuestion}` : s.reason;
+      console.log(`${ok ? "ok   " : "WRONG"} ${run.key.padEnd(16)} ${String(meter.neurons()).padStart(3)} neurons  ${run.text}  ->  ${got}`);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      if (/4006|429/.test(message)) {
+        console.log(`\nStopped: the daily allowance is used up.`);
+        break;
+      }
+      console.log(`fail  ${run.key}: ${message.slice(0, 120)}`);
+    }
+  }
+  console.log(`\nScope check right for ${right} of ${total}.`);
+}
+
+if (flag("--scope-only")) await scopeOnly();
+else {
+  if (!flag("--report")) await runAll();
+  report();
+}
