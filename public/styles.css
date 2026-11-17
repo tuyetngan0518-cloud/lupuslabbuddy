@@ -203,15 +203,23 @@ main {
     margin-top: 28px;
   }
 
+  /* The search and group links sit on the right; on phones they stay above the list. */
   .glossary-layout {
     display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 56px;
     align-items: start;
     margin-top: 24px;
   }
 
+  .glossary-layout > :not(.glossary-side) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .glossary-side {
+    grid-column: 2;
+    grid-row: 1;
     position: sticky;
     top: 24px;
     max-height: calc(100vh - 48px);
@@ -300,7 +308,7 @@ main {
   color: var(--graphite);
 }
 
-/* About: the first two sections side by side on wide screens. */
+/* About: one wider reading column, with the section list on the right on wide screens. */
 .about-side {
   display: none;
 }
@@ -312,12 +320,19 @@ main {
 
   .about-layout {
     display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 56px;
     align-items: start;
   }
 
+  .about-layout > :not(.about-side) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .about-side {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     position: sticky;
@@ -335,26 +350,9 @@ main {
     padding: 5px 0;
   }
 
+  /* Wider than the answer text, as the owner asked; still short enough to read easily. */
   .about-layout .prose {
-    max-width: none;
-  }
-
-  .about-layout .prose > :not(.about-top) {
-    max-width: var(--measure);
-  }
-
-  .about-top {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .about-top section:first-child {
-    padding-right: 40px;
-  }
-
-  .about-top section + section {
-    border-left: 1px solid var(--edge);
-    padding-left: 40px;
+    max-width: 48rem;
   }
 }
 
