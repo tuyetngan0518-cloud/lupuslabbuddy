@@ -5,6 +5,7 @@ const list = document.getElementById("glossary");
 const jump = document.getElementById("glossary-jump");
 const none = document.getElementById("glossary-none");
 const search = document.getElementById("term-search");
+const toGroups = document.getElementById("to-groups");
 
 // Lets "bo the" find "bổ thể": strips Vietnamese tone marks before comparing.
 const plain = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
@@ -18,6 +19,18 @@ let strings;
 let lang = "en";
 // Terms the reader has opened, so they stay open when the language or the search changes.
 const open = new Set();
+
+// The corner link back to the group links: shown only once those links have
+// scrolled off the screen, and only when there are groups to go back to.
+let jumpOnScreen = true;
+let hasGroups = false;
+function showToGroups() {
+  toGroups.hidden = jumpOnScreen || !hasGroups;
+}
+new IntersectionObserver(([entry]) => {
+  jumpOnScreen = entry.isIntersecting;
+  showToGroups();
+}).observe(jump);
 
 // "Complete blood count (CBC)" reads better inside a question as "complete blood count (CBC)".
 // Abbreviations and names like "C-reactive" or "ANA pattern" are left alone.
@@ -87,6 +100,9 @@ function draw() {
     ),
   );
   none.hidden = shown.length > 0;
+  toGroups.textContent = strings.glossaryJump;
+  hasGroups = filled.length > 0;
+  showToGroups();
 }
 
 // An address like /glossary.html#creatinine opens that term.
