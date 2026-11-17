@@ -5,7 +5,6 @@ const form = document.getElementById("ask-form");
 const input = document.getElementById("question");
 const button = document.getElementById("ask-button");
 const result = document.getElementById("result");
-const starters = document.getElementById("starters");
 const starterList = document.getElementById("starter-list");
 
 const LEVEL_STEPS = {
@@ -32,13 +31,6 @@ function message(kind, title, body) {
   );
 }
 
-function tryNext(s) {
-  return el("div", { class: "starters try-next" },
-    el("h2", { text: s.tryNext }),
-    el("ul", {}, ...starterButtons(s.starters.slice(0, 3))),
-  );
-}
-
 function evidenceBar(level) {
   const steps = LEVEL_STEPS[level] ?? 1;
   const bar = el("span", { class: "evidence-bar", "aria-hidden": "true" });
@@ -46,13 +38,18 @@ function evidenceBar(level) {
   return bar;
 }
 
+// Two short lines per source, so the margin is about as tall as the claim.
+// The license is shown in the full Sources list under the answer.
 function note(source, s) {
   return el("div", { class: "note" },
-    el("a", { href: source.url, target: "_blank", rel: "noopener", text: source.authors, title: source.title }),
-    el("span", { text: `${source.year}, ${source.license.toUpperCase()}` }),
+    el("span", {},
+      el("a", { href: source.url, target: "_blank", rel: "noopener", text: source.authors, title: source.title }),
+      `, ${source.year}`,
+    ),
     el("span", { class: "evidence" },
-      el("span", {}, s.evidenceLevel + " ", evidenceBar(source.evidenceLevel)),
-      el("span", { text: s.levels[source.evidenceLevel] ?? source.evidenceLevel }),
+      el("span", { class: "visually-hidden", text: s.evidenceLevel + ": " }),
+      evidenceBar(source.evidenceLevel),
+      " " + (s.levels[source.evidenceLevel] ?? source.evidenceLevel),
     ),
   );
 }
@@ -106,6 +103,7 @@ function answer(data, s, arriving) {
   data.claims.forEach((claim, i) => {
     const body = el("div", { class: "claim-body" },
       claim.limited ? el("span", { class: "limited-label", text: s.limited }) : null,
+      claim.limited ? el("span", { class: "limited-why", text: s.limitedWhy }) : null,
       el("p", { class: "claim-text", text: claim.text, lang: data.lang }),
     );
     // In the margin on wide screens; folded under the claim on a phone.
@@ -142,8 +140,9 @@ function draw(arriving = false) {
   clearInterval(loadingTimer);
   result.replaceChildren();
   result.hidden = view.state === "empty";
-  starters.hidden = view.state !== "empty";
+  // The starter list stays under every state so the next question is one click away.
   button.disabled = view.state === "loading";
+  for (const b of starterList.querySelectorAll("button")) b.disabled = view.state === "loading";
   if (view.state === "empty") return;
 
   if (view.question) result.append(el("h2", { class: "asked", text: view.question }));
@@ -160,10 +159,10 @@ function draw(arriving = false) {
   } else if (view.state === "answer") {
     result.append(...answer(view.data, s, arriving));
   } else if (view.state === "refusal") {
-    result.append(message("is-refusal", s.refusalTitle, s.refusalBody), tryNext(s));
+    result.append(message("is-refusal", s.refusalTitle, s.refusalBody));
   } else if (view.state === "out_of_scope") {
     const [title, body] = s.scope[view.reason] ?? s.scope.not_lab;
-    result.append(message("is-scope", title, body), tryNext(s));
+    result.append(message("is-scope", title, body));
   } else {
     const [title, body] = s.errors[view.code] ?? s.errors.service_problem;
     result.append(message("is-error", title, body));

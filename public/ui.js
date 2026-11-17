@@ -23,6 +23,10 @@ export const strings = {
       "Why are complement C3 and C4 checked in lupus?",
       "Why is urine protein checked in lupus?",
       "What blood count changes can lupus cause?",
+      "What do ESR and CRP show in lupus?",
+      "Why is creatinine checked in lupus?",
+      "Which lab tests are checked while taking lupus medicines?",
+      "How often are lab tests usually done in lupus?",
     ],
 
     loadingSearch: "Searching the sources",
@@ -32,6 +36,7 @@ export const strings = {
     sourcesCount: (n) => `Sources (${n})`,
     evidenceLevel: "Evidence level",
     limited: "Evidence is limited",
+    limitedWhy: "The sources support this only partly, or say the findings are uncertain.",
     levels: {
       "guideline or systematic review": "guideline or systematic review",
       "clinical trial": "clinical trial",
@@ -52,7 +57,6 @@ export const strings = {
 
     refusalTitle: "Not enough evidence to answer this",
     refusalBody: "The sources this tool holds do not cover the question well enough. It is better to say so than to guess.",
-    tryNext: "Questions this tool can answer",
 
     scope: {
       personal_result: [
@@ -154,6 +158,10 @@ export const strings = {
       "Vì sao người bệnh lupus cần xét nghiệm bổ thể C3 và C4?",
       "Vì sao người bệnh lupus cần xét nghiệm protein niệu?",
       "Lupus có thể gây ra những thay đổi gì trong công thức máu?",
+      "Tốc độ máu lắng (ESR) và CRP cho biết điều gì ở người bệnh lupus?",
+      "Vì sao người bệnh lupus cần xét nghiệm creatinin?",
+      "Khi dùng thuốc điều trị lupus, cần làm những xét nghiệm theo dõi độ an toàn của thuốc nào?",
+      "Người bệnh lupus thường cần làm xét nghiệm bao lâu một lần?",
     ],
 
     loadingSearch: "Đang tìm trong các nguồn tham khảo",
@@ -163,6 +171,7 @@ export const strings = {
     sourcesCount: (n) => `Nguồn tham khảo (${n})`,
     evidenceLevel: "Mức độ bằng chứng",
     limited: "Bằng chứng còn hạn chế",
+    limitedWhy: "Các nguồn tham khảo chỉ ủng hộ một phần ý này, hoặc cho biết kết quả còn chưa chắc chắn.",
     levels: {
       "guideline or systematic review": "hướng dẫn hoặc tổng quan hệ thống",
       "clinical trial": "thử nghiệm lâm sàng",
@@ -183,7 +192,6 @@ export const strings = {
 
     refusalTitle: "Chưa đủ bằng chứng để trả lời câu hỏi này",
     refusalBody: "Các nguồn tham khảo của công cụ này chưa đề cập đủ rõ đến câu hỏi. Thà nói rõ như vậy còn hơn đoán mò.",
-    tryNext: "Những câu hỏi công cụ này có thể trả lời",
 
     scope: {
       personal_result: [

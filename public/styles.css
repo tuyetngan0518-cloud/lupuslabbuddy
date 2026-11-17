@@ -18,7 +18,7 @@
   /* About 68 characters of Literata at 18px. Set in rem, not ch: ch follows whichever
      font the box happens to use, and that made the lines far longer than intended. */
   --measure: 34rem;
-  --margin-col: 232px;
+  --margin-col: 264px;
 }
 
 *,
@@ -318,7 +318,13 @@ textarea {
   cursor: pointer;
 }
 
-.starters button:hover {
+.starters button:disabled {
+  color: var(--graphite);
+  cursor: default;
+  text-decoration: none;
+}
+
+.starters button:hover:not(:disabled) {
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -357,16 +363,24 @@ textarea {
   max-width: var(--measure);
 }
 
-/* A claim with thin backing. Amber is used for this and for refusals, nothing else. */
+/* A claim with thin backing: an amber rule beside the text, not a filled box.
+   Amber is used for this and for refusals, nothing else. */
 .claim.is-limited .claim-body {
-  background: var(--amber-tint);
+  border-left: 3px solid var(--amber);
+  padding-left: 29px; /* keeps the text lined up with the other claims */
 }
 
 .limited-label {
   display: block;
   font: 600 0.875rem/1.3 var(--ui);
   color: var(--amber);
-  margin-bottom: 4px;
+}
+
+.limited-why {
+  display: block;
+  font: 400 0.875rem/1.4 var(--ui);
+  color: var(--amber);
+  margin-bottom: 6px;
 }
 
 /* The margin: who said it, when, under which license, and what kind of study. */
@@ -385,7 +399,7 @@ textarea {
 }
 
 .note + .note {
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .note a {
@@ -397,7 +411,17 @@ textarea {
 }
 
 .evidence {
-  margin-top: 4px;
+  margin-top: 2px;
+}
+
+/* Read aloud by screen readers, not shown. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* Four steps: a real ordered scale, so the bar carries meaning. */
@@ -506,10 +530,6 @@ li > .evidence-bar:first-child {
 
 .message.is-refusal h2 {
   color: var(--amber);
-}
-
-.try-next {
-  margin-top: 24px;
 }
 
 /* ---------- Loading: plain placeholders where claims will go ---------- */
@@ -785,7 +805,7 @@ html[lang="vi"] [data-show="en"] {
   }
 
   .claim.is-limited .claim-body {
-    padding-bottom: 14px;
+    padding-left: 13px;
   }
 
   .notes {
