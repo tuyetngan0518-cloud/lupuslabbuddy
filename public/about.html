@@ -14,18 +14,27 @@
     <main>
       <h1 data-t="navAbout">About and limits</h1>
 
+      <!-- On wide screens: a sticky list of sections on the left, filled in by about.js. -->
+      <div class="about-layout">
+      <nav class="about-side" id="about-contents"></nav>
+      <div>
       <div class="prose" data-show="en" lang="en">
-        <h2>What this tool does</h2>
-        <p>It explains lab tests used in lupus (SLE): what a test measures, why it is checked, and how a lab report is read in general. It answers only from open-access medical papers, and it shows the source beside each claim.</p>
-
-        <h2>What it does not do</h2>
-        <ul>
-          <li>It does not interpret your own results.</li>
-          <li>It does not diagnose lupus or a flare.</li>
-          <li>It does not advise on treatment, doses or medicine changes.</li>
-          <li>It does not cover other diseases.</li>
-          <li>It is not written for doctors.</li>
-        </ul>
+        <div class="about-top">
+          <section>
+            <h2>What this tool does</h2>
+            <p>It explains lab tests used in lupus (SLE): what a test measures, why it is checked, and how a lab report is read in general. It answers only from open-access medical papers, and it shows the source beside each claim.</p>
+          </section>
+          <section>
+            <h2>What it does not do</h2>
+            <ul>
+              <li>It does not interpret your own results.</li>
+              <li>It does not diagnose lupus or a flare.</li>
+              <li>It does not advise on treatment, doses or medicine changes.</li>
+              <li>It does not cover other diseases.</li>
+              <li>It is not written for doctors.</li>
+            </ul>
+          </section>
+        </div>
         <p>No doctor or other expert has reviewed the answers. A computer program writes them from the sources, and it can make mistakes. Please check anything important with your care team.</p>
 
         <h2>Glossary</h2>
@@ -58,17 +67,22 @@
       </div>
 
       <div class="prose" data-show="vi" lang="vi">
-        <h2>Công cụ này giúp gì</h2>
-        <p>Công cụ giải thích các xét nghiệm dùng trong bệnh lupus (SLE): xét nghiệm dùng để đo gì, vì sao cần làm, và cách đọc phiếu kết quả nói chung. Công cụ chỉ trả lời dựa trên các bài báo y khoa truy cập mở (ai cũng đọc miễn phí được), và hiển thị nguồn tham khảo bên cạnh từng ý.</p>
-
-        <h2>Những việc công cụ này không làm</h2>
-        <ul>
-          <li>Không giải thích kết quả của riêng bạn.</li>
-          <li>Không chẩn đoán lupus hay đợt bùng phát.</li>
-          <li>Không tư vấn điều trị, liều thuốc hay việc đổi thuốc.</li>
-          <li>Không nói về các bệnh khác.</li>
-          <li>Không dành cho bác sĩ.</li>
-        </ul>
+        <div class="about-top">
+          <section>
+            <h2>Công cụ này giúp gì</h2>
+            <p>Công cụ giải thích các xét nghiệm dùng trong bệnh lupus (SLE): xét nghiệm dùng để đo gì, vì sao cần làm, và cách đọc phiếu kết quả nói chung. Công cụ chỉ trả lời dựa trên các bài báo y khoa truy cập mở (ai cũng đọc miễn phí được), và hiển thị nguồn tham khảo bên cạnh từng ý.</p>
+          </section>
+          <section>
+            <h2>Những việc công cụ này không làm</h2>
+            <ul>
+              <li>Không giải thích kết quả của riêng bạn.</li>
+              <li>Không chẩn đoán lupus hay đợt bùng phát.</li>
+              <li>Không tư vấn điều trị, liều thuốc hay việc đổi thuốc.</li>
+              <li>Không nói về các bệnh khác.</li>
+              <li>Không dành cho bác sĩ.</li>
+            </ul>
+          </section>
+        </div>
         <p>Chưa có bác sĩ hay chuyên gia nào thẩm định các câu trả lời. Câu trả lời do một chương trình máy tính viết dựa trên các nguồn tham khảo, nên có thể có sai sót. Với vấn đề quan trọng, vui lòng hỏi bác sĩ điều trị.</p>
 
         <h2>Bảng thuật ngữ</h2>
@@ -99,7 +113,9 @@
         <h2>Góp ý</h2>
         <p>Nếu câu trả lời có vẻ sai hoặc nguồn tham khảo không khớp với nội dung, vui lòng <a href="/feedback.html">gửi góp ý</a>.</p>
       </div>
+      </div>
+      </div>
     </main>
-    <script type="module" src="/ui.js"></script>
+    <script type="module" src="/about.js"></script>
   </body>
 </html>

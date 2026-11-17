@@ -245,6 +245,119 @@ main {
   display: none;
 }
 
+/* Ask page before the first question: three short numbered lines, no boxes. */
+.how {
+  margin-top: 40px;
+  max-width: var(--measure);
+  padding-top: 20px;
+  border-top: 1px solid var(--edge);
+}
+
+.how[hidden] {
+  display: none;
+}
+
+.how h2 {
+  font: 500 1rem/1.4 var(--ui);
+  color: var(--graphite);
+  margin: 0;
+}
+
+.how ol {
+  margin: 10px 0 0;
+  padding-left: 1.4em;
+  font: 400 1.0625rem/1.6 var(--reading);
+}
+
+.how li + li {
+  margin-top: 6px;
+}
+
+.how .evidence-bar {
+  margin-left: 10px;
+}
+
+@media (min-width: 1100px) {
+  .ask-layout .how {
+    max-width: none;
+  }
+}
+
+.how li::marker {
+  font-family: var(--ui);
+  color: var(--graphite);
+}
+
+/* Footer on every page. */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin: 0 var(--gutter);
+  padding: 18px 0 32px;
+  border-top: 1px solid var(--edge);
+  font-size: 0.875rem;
+  color: var(--graphite);
+}
+
+/* About: the first two sections side by side on wide screens. */
+.about-side {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  main:has(.about-layout) {
+    max-width: calc(1280px + 2 * var(--gutter));
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-side {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 24px;
+    margin-top: 2.5rem;
+  }
+
+  .about-side-title {
+    font: 500 1rem/1.4 var(--ui);
+    color: var(--graphite);
+    margin-bottom: 4px;
+  }
+
+  .about-side a {
+    padding: 5px 0;
+  }
+
+  .about-layout .prose {
+    max-width: none;
+  }
+
+  .about-layout .prose > :not(.about-top) {
+    max-width: var(--measure);
+  }
+
+  .about-top {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-top section:first-child {
+    padding-right: 40px;
+  }
+
+  .about-top section + section {
+    border-left: 1px solid var(--edge);
+    padding-left: 40px;
+  }
+}
+
 @media (min-width: 1100px) {
   .glossary-jump-title {
     display: block;

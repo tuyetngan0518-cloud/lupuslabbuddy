@@ -57,7 +57,8 @@ Evidence level tiers: guideline or systematic review; clinical trial; observatio
 - Type: Literata for answer text (18px, line height 1.65, max 68 characters per line, set as `--measure: 34rem`, never in `ch`); Be Vietnam Pro for interface, margin notes, labels. Both self-hosted with the Vietnamese subset.
 - Vietnamese: headings use line height 1.3 (stacked marks need the room); paragraphs use `text-wrap: pretty` so no short word is left alone on the last line; `public/lang.js` sets the page language and preloads the Vietnamese font files before the page is drawn. The language switch reads "English" and "Tiếng Việt", not codes.
 - Layout: left-aligned. Desktop has claims in the main column and each claim's sources in the margin on the same row. Mobile collapses sources under each claim.
-- Wide screens (1100px and up) add a sticky side column: starter questions to the right on Ask, search and group links to the left on Glossary. Reading lines stay at `--measure`; About stays one column.
+- Wide screens (1100px and up) add a sticky side column: starter questions to the right on Ask, search and group links to the left on Glossary, section links to the left on About (whose first two sections sit side by side). Reading lines stay at `--measure`.
+- Ask shows "How an answer is built" (three numbered lines) only before the first question. Every page has a footer with Feedback and the source note.
 - Motion: one moment only, margin notes settling in when an answer arrives. Respect reduced motion. Visible keyboard focus.
 - Do not use: pill badges, citation numbers, identical rounded cards, shadows, gradients, all-caps labels, middle-dot meta strings, arrows on buttons, monospace for data.
 - Required states: empty, loading, answer, refusal, error (what happened and how to fix it), out of scope.

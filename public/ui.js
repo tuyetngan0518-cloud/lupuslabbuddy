@@ -29,6 +29,15 @@ export const strings = {
       "How often are lab tests usually done in lupus?",
     ],
 
+    howTitle: "How an answer is built",
+    howSteps: [
+      "The tool searches open-access medical papers about lupus.",
+      "Each sentence of the answer lists the papers it comes from.",
+      "Evidence level shows what kind of paper each source is.",
+    ],
+    onThisPage: "On this page",
+    footerSources: "Sources: open-access papers from Europe PMC and PubMed Central",
+
     loadingSearch: "Searching the sources",
     loadingWrite: "Writing the answer",
 
@@ -163,6 +172,15 @@ export const strings = {
       "Khi dùng thuốc điều trị lupus, cần làm những xét nghiệm theo dõi độ an toàn của thuốc nào?",
       "Người bệnh lupus thường cần làm xét nghiệm bao lâu một lần?",
     ],
+
+    howTitle: "Câu trả lời được tạo ra như thế nào",
+    howSteps: [
+      "Công cụ tìm trong các bài báo y khoa truy cập mở về bệnh lupus.",
+      "Mỗi câu trả lời đều ghi rõ bài báo làm nguồn.",
+      "Mức độ bằng chứng cho biết mỗi nguồn là loại bài báo nào.",
+    ],
+    onThisPage: "Trên trang này",
+    footerSources: "Nguồn: các bài báo truy cập mở từ Europe PMC và PubMed Central",
 
     loadingSearch: "Đang tìm trong các nguồn tham khảo",
     loadingWrite: "Đang viết câu trả lời",
@@ -376,6 +394,16 @@ function buildHeader() {
   document.body.prepend(header);
 }
 
+// A quiet footer, so Feedback can be found from every page.
+function buildFooter() {
+  document.body.append(
+    el("footer", { class: "site-footer" },
+      el("a", { href: "/feedback.html", "data-t": "feedbackTitle" }),
+      el("span", { "data-t": "footerSources" }),
+    ),
+  );
+}
+
 // Long text written straight into a page (About): the same last-two-words tie, done once.
 function tidyStaticText() {
   if (wrapsPretty) return;
@@ -386,5 +414,6 @@ function tidyStaticText() {
 }
 
 buildHeader();
+buildFooter();
 tidyStaticText();
 apply();

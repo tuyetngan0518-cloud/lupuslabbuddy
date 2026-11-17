@@ -6,6 +6,8 @@ const input = document.getElementById("question");
 const button = document.getElementById("ask-button");
 const result = document.getElementById("result");
 const starterList = document.getElementById("starter-list");
+const how = document.getElementById("how");
+const howSteps = document.getElementById("how-steps");
 
 const LEVEL_STEPS = {
   "guideline or systematic review": 4,
@@ -140,6 +142,7 @@ function draw(arriving = false) {
   clearInterval(loadingTimer);
   result.replaceChildren();
   result.hidden = view.state === "empty";
+  how.hidden = view.state !== "empty";
   // The starter list stays under every state so the next question is one click away.
   button.disabled = view.state === "loading";
   for (const b of starterList.querySelectorAll("button")) b.disabled = view.state === "loading";
@@ -221,6 +224,12 @@ window.matchMedia("(min-width: 821px)").addEventListener("change", (e) => {
 
 onLang((s) => {
   starterList.replaceChildren(...starterButtons(s.starters));
+  // The last step shows a small example of the evidence-level scale.
+  howSteps.replaceChildren(
+    ...s.howSteps.map((text, i) =>
+      el("li", {}, text, i === s.howSteps.length - 1 ? evidenceBar("observational study") : null),
+    ),
+  );
   draw();
 });
 
