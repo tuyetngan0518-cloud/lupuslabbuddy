@@ -287,11 +287,21 @@ export function onLang(fn) {
   fn(t(), getLang());
 }
 
+// Browsers that know "text-wrap: pretty" keep a paragraph from ending on one word alone.
+// For the others, tie the last two words of a long text together with a non-breaking space.
+const wrapsPretty = typeof CSS !== "undefined" && CSS.supports("text-wrap", "pretty");
+
+function tidy(text) {
+  if (wrapsPretty || typeof text !== "string" || text.length <= 60) return text;
+  const i = text.lastIndexOf(" ");
+  return i < 0 ? text : `${text.slice(0, i)} ${text.slice(i + 1)}`;
+}
+
 export function el(tag, props = {}, ...children) {
   const node = document.createElement(tag);
   for (const [k, v] of Object.entries(props)) {
     if (k === "class") node.className = v;
-    else if (k === "text") node.textContent = v;
+    else if (k === "text") node.textContent = tidy(v);
     else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
     else if (v !== false && v != null) node.setAttribute(k, v === true ? "" : v);
   }
@@ -316,7 +326,7 @@ function apply() {
   const titleKey = { glossary: "glossaryTitle", about: "navAbout", feedback: "feedbackTitle" }[document.body.dataset.page];
   document.title = titleKey ? `${s[titleKey]} | ${s.siteName}` : s.siteName;
   // Any element with data-t="key" gets that string.
-  for (const node of document.querySelectorAll("[data-t]")) node.textContent = s[node.dataset.t];
+  for (const node of document.querySelectorAll("[data-t]")) node.textContent = tidy(s[node.dataset.t]);
   for (const node of document.querySelectorAll("[data-t-placeholder]")) node.placeholder = s[node.dataset.tPlaceholder];
   for (const b of document.querySelectorAll(".lang-switch button")) {
     b.setAttribute("aria-pressed", String(b.dataset.lang === current));
@@ -328,8 +338,9 @@ function buildHeader() {
   const page = document.body.dataset.page;
   const link = (href, key, id) =>
     el("a", { href, "data-t": key, "aria-current": page === id ? "page" : null });
-  const langButton = (lang, label, name) =>
-    el("button", { type: "button", "data-lang": lang, "aria-label": name, text: label, onclick: () => setLang(lang) });
+  // Each language is named in its own words, which readers spot faster than a two-letter code.
+  const langButton = (lang, label) =>
+    el("button", { type: "button", "data-lang": lang, lang, text: label, onclick: () => setLang(lang) });
 
   const header = el(
     "header",
@@ -348,8 +359,8 @@ function buildHeader() {
         link("/about.html", "navAbout", "about"),
       ),
       el("div", { class: "lang-switch", role: "group", "aria-label": "Language / Ngôn ngữ" },
-        langButton("en", "EN", "English"),
-        langButton("vi", "VI", "Tiếng Việt"),
+        langButton("en", "English"),
+        langButton("vi", "Tiếng Việt"),
       ),
     ),
     el("p", { class: "limits-line", "data-t": "limits" }),
@@ -357,5 +368,15 @@ function buildHeader() {
   document.body.prepend(header);
 }
 
+// Long text written straight into a page (About): the same last-two-words tie, done once.
+function tidyStaticText() {
+  if (wrapsPretty) return;
+  for (const node of document.querySelectorAll(".prose p, .prose li")) {
+    const last = node.lastChild;
+    if (last && last.nodeType === Node.TEXT_NODE) last.nodeValue = tidy(last.nodeValue);
+  }
+}
+
 buildHeader();
+tidyStaticText();
 apply();

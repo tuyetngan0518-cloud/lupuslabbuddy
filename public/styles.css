@@ -1,4 +1,4 @@
-@import url("/fonts/fonts.css");
+/* The font files are listed in /fonts/fonts.css, which each page links before this file. */
 
 /* Design tokens. See CLAUDE.md for what each colour is allowed to mean. */
 :root {
@@ -15,7 +15,9 @@
   --ui: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
 
   --gutter: clamp(16px, 5vw, 64px);
-  --measure: 68ch;
+  /* About 68 characters of Literata at 18px. Set in rem, not ch: ch follows whichever
+     font the box happens to use, and that made the lines far longer than intended. */
+  --measure: 34rem;
   --margin-col: 232px;
 }
 
@@ -70,6 +72,23 @@ h2 {
 
 p {
   margin: 0;
+}
+
+/* Keep a paragraph from ending on one short word alone. Vietnamese syllables are short,
+   so this happens often without it. */
+p,
+li,
+.term-def {
+  text-wrap: pretty;
+}
+
+/* Vietnamese capitals carry stacked marks (Ữ, Ề), so wrapped headings and notes need more room. */
+:is(h1, h2, h3):lang(vi) {
+  line-height: 1.3;
+}
+
+.notes:lang(vi) {
+  line-height: 1.5;
 }
 
 /* ---------- Header: name, navigation, language, and the limits line ---------- */
@@ -132,7 +151,6 @@ p {
   background: none;
   border: 0;
   padding: 8px 12px;
-  min-width: 44px;
   cursor: pointer;
 }
 
@@ -173,7 +191,7 @@ main {
 
 .prose p,
 .prose ul {
-  font: 400 1.0625rem/1.65 var(--reading);
+  font: 400 1.125rem/1.65 var(--reading);
   margin-top: 0.9rem;
 }
 
@@ -251,7 +269,7 @@ textarea {
 }
 
 .button-quiet {
-  font: 500 0.9375rem/1 var(--ui);
+  font: 500 0.9375rem/1.3 var(--ui);
   color: var(--violet);
   background: var(--sheet);
   border: 1px solid var(--edge);
@@ -478,7 +496,7 @@ li > .evidence-bar:first-child {
 
 .message p {
   margin-top: 8px;
-  font: 400 1.0625rem/1.6 var(--reading);
+  font: 400 1.125rem/1.6 var(--reading);
 }
 
 .message.is-refusal {
