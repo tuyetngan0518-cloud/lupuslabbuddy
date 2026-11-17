@@ -89,6 +89,7 @@ export const strings = {
     glossarySearch: "Find a term",
     glossaryNone: "No term matches. Try a shorter word.",
     glossaryJump: "Groups of terms",
+    backToTop: "Back to top",
     glossaryGroups: {
       basics: "Lupus basics",
       antibodies: "Antibody and complement tests",
@@ -219,6 +220,7 @@ export const strings = {
     glossarySearch: "Tìm thuật ngữ",
     glossaryNone: "Không tìm thấy thuật ngữ phù hợp. Hãy thử một từ ngắn hơn.",
     glossaryJump: "Các nhóm thuật ngữ",
+    backToTop: "Về đầu trang",
     glossaryGroups: {
       basics: "Kiến thức cơ bản về lupus",
       antibodies: "Xét nghiệm kháng thể và bổ thể",

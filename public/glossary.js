@@ -20,8 +20,9 @@ let lang = "en";
 // Terms the reader has opened, so they stay open when the language or the search changes.
 const open = new Set();
 
-// The corner link back to the group links: shown only once those links have
-// scrolled off the screen, and only when there are groups to go back to.
+// The corner link back to the top of the page (title, search box, group links):
+// shown only once the group links have scrolled off the screen, and only when
+// there are groups to go back to.
 let jumpOnScreen = true;
 let hasGroups = false;
 function showToGroups() {
@@ -100,7 +101,7 @@ function draw() {
     ),
   );
   none.hidden = shown.length > 0;
-  toGroups.textContent = strings.glossaryJump;
+  toGroups.textContent = strings.backToTop;
   hasGroups = filled.length > 0;
   showToGroups();
 }
