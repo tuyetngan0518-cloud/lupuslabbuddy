@@ -242,11 +242,6 @@ main {
   .glossary-layout .glossary-group:first-child h2 {
     margin-top: 0;
   }
-
-  /* The side column is always in view, so the corner link is not needed. */
-  .to-groups {
-    display: none;
-  }
 }
 
 .glossary-jump-title {

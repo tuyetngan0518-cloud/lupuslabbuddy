@@ -21,17 +21,18 @@ let lang = "en";
 const open = new Set();
 
 // The corner link back to the top of the page (title, search box, group links):
-// shown only once the group links have scrolled off the screen, and only when
-// there are groups to go back to.
-let jumpOnScreen = true;
+// shown once the intro under the title has scrolled off the screen, and only when
+// there are groups to go back to. (On wide screens the group links stay pinned in
+// view, so watching them would never show the link.)
+let topOnScreen = true;
 let hasGroups = false;
 function showToGroups() {
-  toGroups.hidden = jumpOnScreen || !hasGroups;
+  toGroups.hidden = topOnScreen || !hasGroups;
 }
 new IntersectionObserver(([entry]) => {
-  jumpOnScreen = entry.isIntersecting;
+  topOnScreen = entry.isIntersecting;
   showToGroups();
-}).observe(jump);
+}).observe(document.querySelector(".glossary-note"));
 
 // "Complete blood count (CBC)" reads better inside a question as "complete blood count (CBC)".
 // Abbreviations and names like "C-reactive" or "ANA pattern" are left alone.
