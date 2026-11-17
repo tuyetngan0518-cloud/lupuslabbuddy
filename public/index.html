@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lupus Lab Buddy</title>
+    <meta name="description" content="Ask about lab tests used in lupus. Every answer shows its sources and evidence level. General information only." />
+    <link rel="preload" href="/fonts/literata-400-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="ask">
+    <main>
+      <h1 data-t="askTitle">Understand a lab term, and see where the answer came from</h1>
+      <p class="lede" data-t="askLede"></p>
+
+      <form class="ask-form" id="ask-form" novalidate>
+        <label for="question" data-t="askLabel">Your question</label>
+        <textarea id="question" name="question" rows="2" maxlength="500" data-t-placeholder="askPlaceholder" aria-describedby="ask-hint"></textarea>
+        <p class="hint" id="ask-hint" data-t="askHint"></p>
+        <div class="form-row">
+          <button class="button" type="submit" id="ask-button" data-t="ask">Ask</button>
+          <span class="hint" data-t="answerIn"></span>
+        </div>
+      </form>
+
+      <!-- Loading, answer, refusal, out-of-scope and error all appear here. -->
+      <section class="result" id="result" aria-live="polite" hidden></section>
+
+      <section class="starters" id="starters">
+        <h2 data-t="startersTitle">Questions people start with</h2>
+        <ul id="starter-list"></ul>
+      </section>
+
+      <noscript><p class="lede">This page needs JavaScript to send your question.</p></noscript>
+    </main>
+    <script type="module" src="/ask.js"></script>
+  </body>
+</html>

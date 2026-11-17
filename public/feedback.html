@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feedback | Lupus Lab Buddy</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="feedback">
+    <main>
+      <h1 data-t="feedbackTitle">Feedback</h1>
+      <p class="lede" data-t="feedbackLede"></p>
+
+      <form id="feedback-form" novalidate>
+        <fieldset>
+          <legend data-t="feedbackKind">What is it about?</legend>
+          <div id="kinds"></div>
+        </fieldset>
+        <div class="field">
+          <label for="comment" data-t="feedbackComment">What happened?</label>
+          <textarea id="comment" rows="4" maxlength="1000"></textarea>
+        </div>
+        <div class="form-row">
+          <button class="button" type="submit" data-t="sendFeedback">Send feedback</button>
+        </div>
+        <p class="status" id="feedback-status" role="status"></p>
+      </form>
+    </main>
+    <script type="module" src="/feedback.js"></script>
+  </body>
+</html>

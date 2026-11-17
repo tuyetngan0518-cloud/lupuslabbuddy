@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Glossary | Lupus Lab Buddy</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="glossary">
+    <main>
+      <h1 data-t="glossaryTitle">Glossary</h1>
+      <p class="lede" data-t="glossaryLede"></p>
+      <p class="glossary-note" data-t="glossaryNote"></p>
+
+      <div class="glossary-search">
+        <label for="term-search" data-t="glossarySearch">Find a term</label>
+        <input type="search" id="term-search" autocomplete="off" />
+      </div>
+
+      <nav class="glossary-jump" id="glossary-jump"></nav>
+      <div class="glossary" id="glossary"></div>
+      <p class="lede" id="glossary-none" data-t="glossaryNone" hidden></p>
+    </main>
+    <script type="module" src="/glossary.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "lupus-lab-buddy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
+    "ingest": "node scripts/ingest/run.ts",
+    "embed": "node --env-file=.env scripts/ingest/embed.ts",
+    "ask": "node --env-file=.env scripts/ask.ts",
+    "eval": "node --env-file=.env scripts/eval.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261116.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.162.0"
+  }
+}

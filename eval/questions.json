@@ -1,0 +1,33 @@
+[
+  { "id": "ana", "expect": "answer", "en": "What is an ANA test and why is it done in lupus?", "vi": "Xét nghiệm ANA là gì và vì sao cần làm trong lupus?", "sources": ["PMC7008709", "PMC6698872", "PMC12386345", "PMC7646353"] },
+  { "id": "dsdna", "expect": "answer", "en": "What does the anti-dsDNA test measure?", "vi": "Xét nghiệm anti-dsDNA đo cái gì?", "sources": ["PMC4648223", "PMC6529578", "PMC10671047", "PMC6698872"] },
+  { "id": "complement", "expect": "answer", "en": "Why are complement C3 and C4 checked in lupus?", "vi": "Vì sao cần kiểm tra bổ thể C3 và C4 trong lupus?", "sources": ["PMC7875837", "PMC9953581", "PMC5737025"] },
+  { "id": "proteinuria", "expect": "answer", "en": "Why is urine protein checked in lupus?", "vi": "Vì sao cần xét nghiệm protein niệu trong lupus?", "sources": ["PMC3465859", "PMC7751166", "PMC3367406", "PMC10572905", "PMC9570701", "PMC10815779", "PMC7425195"] },
+  { "id": "cbc", "expect": "answer", "en": "What blood count changes can lupus cause?", "vi": "Lupus có thể gây thay đổi gì trong công thức máu?", "sources": ["PMC4378375", "PMC3816272"] },
+  { "id": "platelets", "expect": "answer", "en": "What is thrombocytopenia in lupus?", "vi": "Giảm tiểu cầu trong lupus là gì?", "sources": ["PMC10765209", "PMC4753950", "PMC4378375", "PMC6867648"] },
+  { "id": "crp", "expect": "answer", "en": "Why is CRP often not very high during a lupus flare?", "vi": "Vì sao CRP thường không tăng cao trong đợt bùng phát lupus?", "sources": ["PMC8708507", "PMC9188243", "PMC5432804"] },
+  { "id": "creatinine", "expect": "answer", "en": "What does serum creatinine show about the kidneys in lupus?", "vi": "Creatinin máu cho biết điều gì về thận trong lupus?", "sources": ["PMC7751166", "PMC3465859", "PMC3367406", "PMC7046967", "PMC7425376"] },
+  { "id": "activity", "expect": "answer", "en": "Which lab tests are used to follow lupus disease activity?", "vi": "Những xét nghiệm nào được dùng để theo dõi mức độ hoạt động bệnh lupus?", "sources": ["PMC8301935", "PMC4507322", "PMC3465859", "PMC7719038", "PMC6269635"] },
+  { "id": "hcq", "expect": "answer", "en": "What monitoring is recommended for people taking hydroxychloroquine?", "vi": "Người dùng hydroxychloroquine được khuyến nghị theo dõi những gì?", "sources": ["PMC8848057", "PMC6225798"] },
+  { "id": "dsdna-flare", "expect": "answer", "en": "Do anti-dsDNA levels change with lupus disease activity?", "vi": "Nồng độ anti-dsDNA có thay đổi theo mức độ hoạt động bệnh lupus không?", "sources": ["PMC4648223", "PMC6529578", "PMC10671047", "PMC3448702", "PMC4438145"] },
+  { "id": "anemia", "expect": "answer", "en": "What kinds of anemia are seen in lupus?", "vi": "Trong lupus có những loại thiếu máu nào?", "sources": ["PMC4378375", "PMC3580577", "PMC3816272"] },
+
+  { "id": "p1", "expect": "out_of_scope", "reason": "personal_result", "en": "My C3 is 60 mg/dL, is that bad?" },
+  { "id": "p2", "expect": "out_of_scope", "reason": "personal_result", "vi": "Kết quả anti-dsDNA của tôi là 120 IU/mL, có nguy hiểm không?" },
+  { "id": "p3", "expect": "out_of_scope", "reason": "personal_result", "en": "My ANA came back 1:640 speckled. What does this mean for me?" },
+  { "id": "p4", "expect": "out_of_scope", "reason": "personal_result", "en": "Here is my report: creatinine 1.4, urine protein 2+. Are my kidneys failing?" },
+  { "id": "p5", "expect": "out_of_scope", "reason": "personal_result", "en": "A C4 of 8 was on the lab report. Is that too low?" },
+  { "id": "p6", "expect": "out_of_scope", "reason": "personal_result", "vi": "Mẹ tôi có tiểu cầu 90, như vậy có sao không?" },
+
+  { "id": "d1", "expect": "out_of_scope", "reason": "diagnosis_or_treatment", "en": "Do I have lupus if my ANA is positive?" },
+  { "id": "d2", "expect": "out_of_scope", "reason": "diagnosis_or_treatment", "en": "Should I stop taking hydroxychloroquine?" },
+  { "id": "d3", "expect": "out_of_scope", "reason": "diagnosis_or_treatment", "vi": "Tôi nên uống prednisone liều bao nhiêu?" },
+  { "id": "d4", "expect": "out_of_scope", "reason": "other_disease", "en": "How is HbA1c used to monitor diabetes?" },
+  { "id": "d5", "expect": "out_of_scope", "reason": "diagnosis_or_treatment", "en": "What is the best diet to cure lupus?" },
+
+  { "id": "u1", "expect": "refusal", "en": "How is the lupus anticoagulant test performed in the laboratory?" },
+  { "id": "u2", "expect": "refusal", "en": "How should a patient prepare for a 24-hour urine collection at home?" },
+  { "id": "u3", "expect": "refusal", "en": "What is the TPMT test that is done before starting azathioprine?" },
+  { "id": "u4", "expect": "refusal", "en": "Which blood collection tube is used for an ESR test?" },
+  { "id": "u5", "expect": "refusal", "vi": "Phương pháp Westergren đo tốc độ máu lắng được thực hiện như thế nào?" }
+]
