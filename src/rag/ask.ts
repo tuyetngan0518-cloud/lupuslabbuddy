@@ -45,9 +45,10 @@ const PERSONAL = /(^|[\s,.])(my|mine|i have|i got|i am|i'm|của tôi|tôi|của
 const HAS_NUMBER = /\d/;
 // A lab value or cut-off: a number followed by a lab unit, e.g. "500 mg/24 hours", "3.5 g/dL", "60 mL/min".
 // Ranges vary by laboratory, so claims quoting one are dropped. Percentages of patients are allowed.
-// Also doses written in words ("five milligrams per kilogram") and counts "per microliter" or "/mm³".
+// Also doses written in words ("five milligrams per kilogram"), counts "per microliter" or "/mm³",
+// and titre cut-offs such as "1:80" or "1 : 160".
 const LAB_VALUE =
-  /\d([.,\s]\d+)*\s*(mg|g\/|g\s?(per|mỗi)|mmol|[µμu]mol|mL|dL|IU|U\/|mm\/h|mm\s?(per|trong)|×?\s?10\^?\d+\s?\/L|\/L\b|\/\s?mm[3³]|\/\s?[µμu]L|per\s+(micro|cubic))|(milligram|mg)s?\s*(per|\/|mỗi)\s*(kilogram|kg)/i;
+  /\d([.,\s]\d+)*\s*(mg|g\/|g\s?(per|mỗi)|mmol|[µμu]mol|mL|dL|IU|U\/|mm\/h|mm\s?(per|trong)|×?\s?10\^?\d+\s?\/L|\/L\b|\/\s?mm[3³]|\/\s?[µμu]L|per\s+(micro|cubic))|(milligram|mg)s?\s*(per|\/|mỗi)\s*(kilogram|kg)|\b1\s?:\s?\d{2,}/i;
 
 function parseJson(text: string): any {
   const start = text.indexOf("{");
