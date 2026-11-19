@@ -90,6 +90,11 @@ Vietnamese style: write the way a Vietnamese health writer would, not word for w
 - `npm run typecheck`: check the code for type errors
 - `npm run deploy`: publish to Cloudflare (needs `npx wrangler login` once)
 
+Review helpers (subagents in `.claude/agents/`, development only, no Cloudflare cost):
+- `claim-checker`: after an eval run, a second reader checks each claim in `eval/review.md` against its cited passages and Vietnamese style; writes `eval/claim-check.md`. The owner's hand check stays.
+- `rule-reviewer`: before a larger commit or `npm run deploy`, checks the changes against the rules in this file (read-only). Use `/code-review` for code bugs.
+- No researcher agent on purpose: answers and the glossary must not draw on sources outside the licensed library.
+
 Weekly refresh: `.github/workflows/refresh.yml` runs every Monday 03:00 UTC (or by hand from the GitHub Actions tab): ingest, `embed --save-from-index` (data/ is not on GitHub), then `embed --max-new 1000`. It reads the two secrets from GitHub repository secrets and keeps a 30-day copy of the library as a job download. GitHub turns scheduled jobs off after 60 days with no repo activity; re-enable from the Actions tab.
 
 Secrets live in `.env` (ignored by git) as `CF_ACCOUNT_ID` and `CF_AI_TOKEN`. They are deliberately not named `CLOUDFLARE_*`, because Cloudflare's own tool would then use this narrow token for publishing and fail. Never print or commit them.
