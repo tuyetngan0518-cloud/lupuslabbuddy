@@ -42,7 +42,7 @@ export function pinnedTerms(text: string): string {
 /** Step 1: is the question in scope, and what is it in English? */
 export function scopePrompt(question: string): ChatMessage[] {
   const pinned = pinnedTerms(question);
-  const termPairs = pinned ? ` Use these fixed term pairs when translating:\n${pinned}` : "";
+  const termPairs = pinned ? `\nFixed term pairs (English = Vietnamese); use the English side:\n${pinned}` : "";
   return [
     {
       role: "system",
@@ -67,7 +67,16 @@ Examples:
 - "Có nên giảm liều prednisone không?" -> diagnosis_or_treatment
 - "Do I have lupus?" -> diagnosis_or_treatment
 
-Also translate the question into clear English for a literature search. The question may be in Vietnamese. Spell out abbreviations (HCQ = hydroxychloroquine, MMF = mycophenolate mofetil, MTX = methotrexate, AZA = azathioprine, CBC = complete blood count, ESR = erythrocyte sedimentation rate). Spell out the full name of a test after its abbreviation (ANA = antinuclear antibody). For a short question that only names a test ("What is X?", "X là gì?"), write "What is X (full name), what does it measure, and why is it checked in lupus?", so the search has enough words to match. For a question about a medicine, ask what it is used for in lupus and which lab tests are checked while taking it.${termPairs}
+Also write the question as one English question for a literature search. The question may be in English or Vietnamese, and the same question in either language must come out the same, so follow these rules exactly:
+- Keep the asker's meaning and nothing more. Do not add sub-questions, details or topics they did not ask about.
+- English words only. Never copy Vietnamese words into it, not even in brackets.
+- Call the disease "lupus", never "SLE" or "systemic lupus erythematosus".
+- Write each abbreviation as full name then abbreviation in brackets, once: antinuclear antibody (ANA), anti-double-stranded DNA (anti-dsDNA), complete blood count (CBC), erythrocyte sedimentation rate (ESR), C-reactive protein (CRP), hydroxychloroquine (HCQ), mycophenolate mofetil (MMF), methotrexate (MTX), azathioprine (AZA).
+- Say "lab tests", "blood", "urine" (not "laboratory tests", "serum", "proteinuria").
+- Only when the whole question is "What is X?" or "X là gì?" for a test X, write "What is X, what does it measure, and why is it checked in lupus?", so the search has enough words to match. Any other question about a test keeps its own wording.
+- Only when the whole question is "What is X?" or "What is X for?" for a medicine X ("what is HCQ for", "Thuốc HCQ là gì?"), write "What is X used for in lupus, and which lab tests are checked while taking it?" Any other question about a medicine keeps its own wording.
+- Keep the asker's verbs: "follow" stays "follow", "check" stays "check".
+Example: "Why can white blood cells be low in lupus?" and "Vì sao bạch cầu có thể giảm trong bệnh lupus?" both become "Why can white blood cells be low in lupus?"${termPairs}
 
 Reply with JSON only: {"language":"en" or "vi","scope":"...","english_question":"..."}`,
     },
